@@ -11,7 +11,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 
-bot_token = "MTEwODIwMzAxODY2ODc0ODg4MA.GAZAwc.rSA6oMXfM2tR1F6Mt_lH_VjbL3rLv6j2Dvu6xY"
+bot_token = "token"
 
 
 def send_message(seaifdeez, message):
