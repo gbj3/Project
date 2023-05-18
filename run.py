@@ -1,28 +1,38 @@
-import ssl
 import time
-from urllib.request import urlopen
-
-# Disable SSL certificate verification
-ssl_context = ssl.create_default_context()
-ssl_context.check_hostname = False
-ssl_context.verify_mode = ssl.CERT_NONE
+import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 # Specify the URL
 url = "https://www.merfolkslullaby.com/map?&tab=weather"
 
-# Open the URL with SSL certificate verification disabled
-page = urlopen(url, context=ssl_context)
+# Set up the Selenium webdriver
+options = Options()
+options.add_argument("--headless")  # Run in headless mode, without opening a browser window
+service = Service('path/to/chromedriver')  # Replace 'path/to/chromedriver' with the actual path to the ChromeDriver executable
+driver = webdriver.Chrome(service=service, options=options)
 
-# Wait for 10 seconds
-time.sleep(10)
+# Navigate to the webpage
+driver.get(url)
 
-# Read the content of the page
-content = page.read()
+# Wait for the data to load
+time.sleep(10)  # Adjust the delay as needed
+
+# Extract the desired data
+content = driver.page_source
+
 # Specify the output file name
 output_file = "codeoutput.txt"
 
 # Write the content to the output file with UTF-8 encoding
 with open(output_file, "w", encoding="utf-8") as file:
-    file.write(content.decode("utf-8"))
+    file.write(content)
 
 print(f"Output saved to '{output_file}'")
+
+# Close the browser
+driver.quit()
