@@ -25,7 +25,7 @@ def send_message(seaifdeez, message):
         channel = client.get_channel(seaifdeez)
         role_id = 965410891682185226
         role_mention = f"<@&{role_id}>"
-        await channel.send(f"{role_mention} {message}")
+        await channel.send(f"{role_mention} Storm at {message}")
         await client.close()
 
     client.run(bot_token)
@@ -73,7 +73,7 @@ while True:
                 minutes = int(item.split()[5])
                 if minute(minutes):
                     output_data += item
-                    seaifdeez = 938260679306129408
+                    seaifdeez = 1108687600232955974
                     send_message(seaifdeez, output_data)
             except ValueError:
                 pass
